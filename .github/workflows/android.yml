@@ -24,7 +24,7 @@ jobs:
         pip3 install --force-reinstall cython==0.29.36
 
     - name: Rodar Compilador Buildozer
-      run: yes | buildozer -v android debug
+      run:  | buildozer -v android debug
 
     - name: Enviar APK Pronto para o Painel
       uses: actions/upload-artifact@v4

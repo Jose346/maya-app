@@ -23,11 +23,12 @@ jobs:
         pip3 install "cython<3.0.0" buildozer
         pip3 install --force-reinstall cython==0.29.36
 
-    - name: Rodar Compilador Buildozer
-      run: buildozer -v android debug
+    - name: Aceitar Licencas do Android SDK
+      run: |
+        mkdir -p ~/.android
+        touch ~/.android/repositories.cfg
 
-    - name: Enviar APK Pronto para o Painel
-      uses: actions/upload-artifact@v4
-      with:
-        name: aplicativo-final-apk
-        path: bin/*.apk
+    - name: Rodar Compilador Buildozer
+      run: |
+        export APP_ANDROID_ACCEPT_SDK_LICENSE="1"
+        buildozer -v android debug
